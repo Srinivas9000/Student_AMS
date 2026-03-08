@@ -26,7 +26,7 @@ def register(request):
         request.session["teacher_id"] = teacher.id
         request.session["teacher_name"] = teacher.name
 
-        return redirect("dashboard")
+        return redirect('dashboard')
 
     return render(request, "register.html")
 
@@ -46,7 +46,7 @@ def login_view(request):
             user = Teacher.objects.get(email=email)
 
             if user.password == password:
-                return redirect("dashboard")   # dashboard url name
+                return redirect('dashboard')   # dashboard url name
             else:
                 return render(request, "login.html", {"error": "Invalid Password"})
 
