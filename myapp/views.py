@@ -34,21 +34,24 @@ def register(request):
 # --------------------------
 # LOGIN
 # --------------------------
+from .models import Teacher   # your model name
+
 def login_view(request):
+
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
 
         try:
-            teacher = Teacher.objects.get(email=email)
-            if check_password(password, teacher.password):
-                request.session["teacher_id"] = teacher.id
-                request.session["teacher_name"] = teacher.name
-                return redirect("dashboard")
+            user = Teacher.objects.get(email=email)
+
+            if user.password == password:
+                return redirect("dashboard")   # dashboard url name
             else:
-                return render(request, "login.html", {"error": "Invalid password"})
+                return render(request, "login.html", {"error": "Invalid Password"})
+
         except Teacher.DoesNotExist:
-            return render(request, "login.html", {"error": "Email not registered"})
+            return render(request, "login.html", {"error": "Invalid Email"})
 
     return render(request, "login.html")
 
