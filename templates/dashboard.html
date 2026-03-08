@@ -1,8 +1,30 @@
-
 {% extends "base.html" %}
+{% load static %}
+
 {% block title %} Attendance | Dashboard {% endblock %}
 
 {% block maincontent %}
+
+<style>
+/* Dashboard background */
+.dashboard-bg{
+    background-image: url("{% static 'images/class.jpg' %}");
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Light overlay for readability */
+.overlay{
+    background: rgba(255,255,255,0.85);
+    min-height: 100vh;
+}
+</style>
+
+<div class="dashboard-bg">
+<div class="overlay">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
   <a class="navbar-brand d-flex align-items-center gap-2" href="#">
     <span class="fs-4">📊</span>
@@ -21,6 +43,7 @@
 </div>
 
 <div class="d-flex justify-content-center p-4 text-center gap-4 flex-wrap">
+
   <div class="card shadow" style="width: 18rem;">
     <div class="card-body">
       <div class="mb-3 fs-1">📝</div>
@@ -29,6 +52,7 @@
       <a href="{% url 'attendance' %}" class="btn btn-primary">Mark Attendance</a>
     </div>
   </div>
+
   <div class="card shadow" style="width: 18rem;">
     <div class="card-body">
       <div class="mb-3 fs-1">📈</div>
@@ -37,6 +61,7 @@
       <a href="{% url 'attendance_report' %}" class="btn btn-success">View Reports</a>
     </div>
   </div>
+
   <div class="card shadow" style="width: 18rem;">
     <div class="card-body">
       <div class="mb-3 fs-1">🏫</div>
@@ -45,9 +70,10 @@
       <a href="{% url 'manage_students' %}" class="btn btn-warning">Manage Classes</a>
     </div>
   </div>
+
 </div>
+
+</div>
+</div>
+
 {% endblock %}
-
-
-
-
